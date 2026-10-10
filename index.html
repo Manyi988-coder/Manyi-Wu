@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===== SEO: replace the [PLACEHOLDERS] below (search engines do not run JavaScript, so edit these here) ===== -->
+<title>Manyi Wu | BBA Student | Personal Website</title>
+<meta name="description" content="Personal portfolio of Manyi Wu, a [PROGRAM NAME] student at Pacific States University based in [CITY, STATE].">
+<meta name="author" content="Manyi Wu">
+<link rel="canonical" href="https://[USERNAME].github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Manyi Wu | Personal Website">
+<meta property="og:description" content="Portfolio, projects and experience of Manyi Wu, Pacific States University.">
+<meta property="og:url" content="https://[USERNAME].github.io/">
+<meta property="og:image" content="assets/profile.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Manyi Wu | Personal Website">
+<meta name="twitter:description" content="Portfolio, projects and experience of Manyi Wu, Pacific States University.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script>
+/* Apply saved theme (or system preference) before first paint to avoid a flash */
+(function () {
+  var t = null;
+  try { t = localStorage.getItem("theme"); } catch (e) {}
+  if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", t);
+})();
+</script>
+
+<style>
+/* ==================== 1. DESIGN TOKENS ==================== */
+:root {
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#14213d; --muted:#556079; --line:#dce0e8;
+  --accent:#1f4e79; --accent-ink:#ffffff; --gold:#a97c1f; --soft:#e8eef6;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+:root[data-theme="dark"] {
+  --bg:#0e1420; --surface:#162033; --ink:#e8ecf3; --muted:#9eaac0; --line:#26324a;
+  --accent:#8dbbe8; --accent-ink:#0e1420; --gold:#d9b05a; --soft:#1c2a42;
+}
+
+/* ==================== 2. BASE ==================== */
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:72px; }
+body { margin:0; background:var(--bg); color:var(--ink); font:400 1rem/1.65 var(--sans); }
+h1,h2,h3 { font-family:var(--serif); font-weight:600; line-height:1.2; margin:0 0 .5rem; }
+h2 { font-size:clamp(1.6rem,3vw,2.1rem); margin-bottom:1.5rem; }
+h3 { font-size:1.2rem; }
+p { margin:0 0 1rem; max-width:70ch; }
+a { color:var(--accent); }
+ul { margin:0; padding-left:1.2rem; }
+img { max-width:100%; display:block; }
+:focus-visible { outline:3px solid var(--gold); outline-offset:3px; border-radius:4px; }
+.wrap { width:min(1080px, 92%); margin-inline:auto; }
+.sec { padding:4.5rem 0; border-top:1px solid var(--line); }
+.muted { color:var(--muted); }
+.sr-only { position:absolute; left:-9999px; }
+.skip:focus { left:1rem; top:1rem; z-index:100; background:var(--accent); color:var(--accent-ink); padding:.5rem 1rem; }
+
+/* ==================== 3. COMPONENTS ==================== */
+.btn { display:inline-block; padding:.7rem 1.3rem; border-radius:8px; border:1.5px solid var(--accent);
+  background:var(--accent); color:var(--accent-ink); font-weight:600; text-decoration:none; cursor:pointer; font-family:inherit; font-size:1rem; transition:transform .2s; }
+.btn:hover { transform:translateY(-2px); }
+.btn.ghost { background:transparent; color:var(--accent); }
+.card { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:1.4rem; }
+.grid { display:grid; gap:1.2rem; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
+.tags { list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:.4rem; margin:.6rem 0 0; }
+.tags li { background:var(--soft); color:var(--ink); border-radius:999px; padding:.15rem .75rem; font-size:.88rem; }
+.meta { color:var(--muted); font-size:.92rem; margin:0 0 .6rem; }
+.links { display:flex; flex-wrap:wrap; gap:.4rem 1rem; list-style:none; padding:0; margin:.8rem 0 0; }
+.links a { font-weight:600; font-size:.95rem; }
+details summary { cursor:pointer; color:var(--accent); font-weight:600; margin-top:.6rem; }
+
+/* Header / navigation */
+header.top { position:sticky; top:0; z-index:50; background:var(--surface); border-bottom:1px solid var(--line); }
+.bar { display:flex; align-items:center; justify-content:space-between; min-height:60px; gap:1rem; }
+.brand { font-family:var(--serif); font-weight:600; font-size:1.15rem; color:var(--ink); text-decoration:none; }
+nav ul { display:flex; gap:.2rem; list-style:none; margin:0; padding:0; }
+nav a { display:block; padding:.4rem .7rem; border-radius:6px; color:var(--muted); text-decoration:none; font-size:.95rem; font-weight:500; }
+nav a:hover, nav a[aria-current="true"] { color:var(--ink); background:var(--soft); }
+.tools { display:flex; gap:.5rem; align-items:center; }
+.icon-btn { border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:8px; width:40px; height:40px; cursor:pointer; font-size:1.1rem; }
+#menuBtn { display:none; }
+@media (max-width:860px) {
+  #menuBtn { display:block; }
+  nav { position:absolute; left:0; right:0; top:100%; background:var(--surface); border-bottom:1px solid var(--line); display:none; }
+  nav.open { display:block; }
+  nav ul { flex-direction:column; padding:.5rem 4%; }
+}
+
+/* Hero */
+.hero { padding:4rem 0 4.5rem; }
+.hero-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:3rem; align-items:center; }
+.hero h1 { font-size:clamp(2.2rem,5vw,3.5rem); }
+.headline { font-size:1.15rem; color:var(--accent); font-weight:600; margin-bottom:1rem; }
+.hero-facts { list-style:none; padding:0; margin:1.2rem 0; display:flex; flex-wrap:wrap; gap:.3rem 1.4rem; color:var(--muted); }
+.cta { display:flex; flex-wrap:wrap; gap:.8rem; margin:1.4rem 0; }
+.photo { justify-self:center; width:min(320px,80%); aspect-ratio:4/5; position:relative; }
+.photo::before { content:""; position:absolute; inset:14px -14px -14px 14px; border:2px solid var(--gold); border-radius:14px; }
+.photo img, .photo .ph { position:relative; width:100%; height:100%; object-fit:cover; border-radius:14px; background:var(--soft); }
+.ph { display:grid; place-items:center; font:600 4rem var(--serif); color:var(--accent); }
+@media (max-width:760px) { .hero-grid { grid-template-columns:1fr; } .photo { order:-1; width:min(220px,60%); } }
+
+/* Projects */
+.project { padding:0; overflow:hidden; transition:transform .2s, border-color .2s; }
+.project:hover { transform:translateY(-4px); border-color:var(--accent); }
+.project .thumb { aspect-ratio:16/9; width:100%; object-fit:cover; background:var(--soft); }
+.project .ph { aspect-ratio:16/9; font-size:2.4rem; }
+.project .body { padding:1.2rem 1.4rem 1.4rem; }
+
+/* Timeline (experience / leadership) */
+.timeline { border-left:2px solid var(--line); margin-left:.4rem; }
+.timeline .item { position:relative; padding:0 0 2rem 1.6rem; }
+.timeline .item::before { content:""; position:absolute; left:-7px; top:.5rem; width:12px; height:12px; border-radius:50%; background:var(--gold); }
+
+/* Publications */
+.pub { border-left:3px solid var(--accent); padding-left:1rem; margin-bottom:1.4rem; }
+.pub p { margin-bottom:.3rem; }
+
+/* Resume + contact bands */
+.band { background:var(--soft); border-radius:14px; padding:2rem; display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:space-between; align-items:center; }
+footer { border-top:1px solid var(--line); padding:2rem 0; color:var(--muted); font-size:.9rem; }
+
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+</style>
+</head>
+
+<body>
+<a class="sr-only skip" href="#main">Skip to content</a>
+
+<!-- ============================================================================
+     STUDENT INFORMATION - EDIT THIS SECTION
+     Everything you see on the page comes from the block below.
+     RULES:  keep the quotation marks "like this"  |  keep commas between items
+             leave a value as "" (or a list as [ ]) to hide it - empty items never show
+             To add another project/job/etc., copy one { ... }, block and paste it below.
+     ============================================================================ -->
+<script>
+const STUDENT = {
+  // ---- BASIC INFO ----
+  name: "Manyi Wu",                                   // EDIT: your full name
+  program: "Bachelor of Business Administration (BBA)", // EDIT: your program
+  university: "Pacific States University",
+  headline: "BBA Student | [YOUR INTEREST] Enthusiast | Future Professional", // EDIT
+  intro: "I am a student at Pacific States University looking for [internships / roles / research]. Replace this with 2-3 sentences about who you are.", // EDIT
+  location: "[CITY, STATE]",                          // EDIT
+  email: "your.email@example.com",                    // EDIT
+  phone: "",                                          // optional
+  photo: "assets/profile.jpg",                        // put your photo at assets/profile.jpg
+  resume: "assets/resume.pdf",                        // put your resume at assets/resume.pdf
+
+  // ---- SOCIAL LINKS (full URLs; leave "" to hide) ----
+  links: {
+    LinkedIn: "https://www.linkedin.com/in/your-name",
+    GitHub: "https://github.com/your-username",
+    "Google Scholar": "",
+    ORCID: "",
+    ResearchGate: "",
+    Portfolio: "",
+    "X / Twitter": "",
+    Other: ""
+  },
+
+  // ---- ABOUT ME ----
+  about: {
+    bio: "[Write a short biography in your own words.]",
+    academic: "[Your academic background.]",
+    careerInterests: "[Fields or roles that interest you.]",
+    goals: "[Your professional goals.]",
+    personal: "[Hobbies and personal interests.]"
+  },
+
+  // ---- EDUCATION (copy a block to add more) ----
+  education: [
+    {
+      institution: "Pacific States University",
+      degree: "Bachelor of Business Administration",
+      major: "[YOUR MAJOR]",
+      start: "[START YEAR]", end: "[EXPECTED GRADUATION]",
+      gpa: "",                                         // optional, e.g. "3.8 / 4.0"
+      coursework: ["[Course 1]", "[Course 2]", "[Course 3]"],
+      achievements: ["[Dean's list, scholarship, etc.]"]
+    }
+  ],
+
+  // ---- SKILLS (list real skills only - no percentages) ----
+  skills: {
+    "Technical Skills": ["[Skill 1]", "[Skill 2]", "[Skill 3]"],
+    "Software": ["[Tool 1]", "[Tool 2]"],
+    "Professional Skills": ["Communication", "Teamwork", "Problem Solving"]
+  },
+
+  // ---- PROJECTS (copy a block to add more; image optional) ----
+  projects: [
+    {
+      title: "[Project Title]",
+      description: "[What the project is and what you achieved.]",
+      tech: ["[Tool 1]", "[Tool 2]"],
+      role: "[Your role]",
+      date: "[MONTH YEAR]",
+      github: "", demo: "",
+      image: "assets/project-1.jpg"
+    }
+  ],
+
+  // ---- EXPERIENCE (set to [ ] to hide) ----
+  experience: [
+    {
+      title: "[Job Title]", company: "[Organization]", location: "[City, State]",
+      dates: "[START] - [END]",
+      responsibilities: ["[What you did]"],
+      achievements: ["[A result you can measure or describe]"],
+      tech: ["[Tool 1]"]
+    }
+  ],
+
+  // ---- RESEARCH (leave everything empty to hide the section) ----
+  research: {
+    interests: [],        // e.g. ["Topic 1", "Topic 2"]
+    projects: [],         // { title:"", description:"", link:"" }
+    roles: [],            // research assistant roles: { title:"", org:"", dates:"", description:"" }
+    conferences: [],      // e.g. ["Conference name, Year"]
+    links: []             // { label:"", url:"" }
+  },
+
+  // ---- PUBLICATIONS (only real ones; empty hides the section) ----
+  // Example: { title:"", authors:"", venue:"", year:"", doi:"10.xxxx/xxxx", abstract:"", pdf:"", publisher:"" }
+  publications: [],
+
+  // ---- CERTIFICATIONS ----
+  certifications: [
+    { name: "[Certification Name]", org: "[Issuing Organization]", date: "[YEAR]", url: "" }
+  ],
+
+  // ---- AWARDS ----
+  awards: [
+    { name: "[Award Name]", org: "[Organization]", date: "[YEAR]", description: "[Short description]" }
+  ],
+
+  // ---- VOLUNTEERING & LEADERSHIP (student orgs, IEEE, community) ----
+  leadership: [
+    { role: "[Role]", org: "[Organization]", dates: "[START] - [END]", description: "[What you did]" }
+  ]
+};
+</script>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home" id="brandName">Portfolio</a>
+    <nav id="nav" aria-label="Main navigation"><ul id="navList"></ul></nav>
+    <div class="tools">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch between light and dark mode">&#9680;</button>
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <noscript><div class="wrap sec"><p>This portfolio needs JavaScript to display its content. Please enable JavaScript in your browser.</p></div></noscript>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; <span id="year"></span> <span id="footName"></span>. Personal Website | Pacific States University.</p>
+    <p>This is a personal website. It is not operated or endorsed by Pacific States University.</p>
+  </div>
+</footer>
+
+<script>
+/* ==================== HELPERS ==================== */
+const S = STUDENT;
+const esc = (v) => String(v == null ? "" : v).replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const has = (a) => Array.isArray(a) && a.length > 0;
+const safeUrl = (u) => (/^(https?:|mailto:|tel:|assets\/|\.\/|#)/i.test(u || "") ? esc(u) : "");
+const a = (u, t) => (u ? `<a href="${safeUrl(u)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>` : "");
+const ul = (arr) => (has(arr) ? `<ul>${arr.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "");
+const tags = (arr) => (has(arr) ? `<ul class="tags">${arr.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "");
+const links = (arr) => { const l = arr.filter(Boolean); return l.length ? `<ul class="links">${l.map((x) => `<li>${x}</li>`).join("")}</ul>` : ""; };
+const initials = S.name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+const section = (id, title, body) => `<section class="sec" id="${id}" aria-labelledby="${id}-h"><div class="wrap"><h2 id="${id}-h">${esc(title)}</h2>${body}</div></section>`;
+
+/* ==================== SECTION BUILDERS ==================== */
+function hero() {
+  const social = Object.entries(S.links).filter(([, u]) => u).map(([k, u]) => a(u, k));
+  const facts = [S.location, S.university].filter(Boolean).map((t) => `<li>${esc(t)}</li>`).join("");
+  return `<section class="hero" id="home" aria-label="Introduction"><div class="wrap hero-grid">
+    <div>
+      <p class="muted">Personal Website | ${esc(S.university)}</p>
+      <h1>Hello, I'm ${esc(S.name)}</h1>
+      <p class="headline">${esc(S.headline)}</p>
+      <p>${esc(S.intro)}</p>
+      <ul class="hero-facts">${facts}${S.email ? `<li><a href="mailto:${esc(S.email)}">${esc(S.email)}</a></li>` : ""}</ul>
+      <div class="cta">
+        <a class="btn" href="#${has(S.projects) ? "projects" : "about"}">View My Work</a>
+        ${S.resume ? `<a class="btn ghost" href="${safeUrl(S.resume)}" download>Download Resume</a>` : ""}
+      </div>
+      ${links(social)}
+    </div>
+    <div class="photo" id="photoBox"><img src="${safeUrl(S.photo)}" alt="Portrait of ${esc(S.name)}" fetchpriority="high"></div>
+  </div></section>`;
+}
+
+function about() {
+  const A = S.about, items = [["Biography", A.bio], ["Academic background", A.academic], ["Career interests", A.careerInterests], ["Professional goals", A.goals], ["Personal interests", A.personal]].filter((i) => i[1]);
+  if (!items.length) return "";
+  return section("about", "About", `<div class="grid">${items.map(([t, x]) => `<article class="card"><h3>${t}</h3><p>${esc(x)}</p></article>`).join("")}</div>`);
+}
+
+function education() {
+  if (!has(S.education)) return "";
+  return section("education", "Education", `<div class="grid">${S.education.map((e) => `<article class="card">
+    <h3>${esc(e.institution)}</h3>
+    <p><strong>${esc(e.degree)}</strong>${e.major ? `, ${esc(e.major)}` : ""}</p>
+    <p class="meta">${esc(e.start)} - ${esc(e.end)}${e.gpa ? ` | GPA: ${esc(e.gpa)}` : ""}</p>
+    ${ul(e.achievements)}
+    ${has(e.coursework) ? `<details><summary>Relevant coursework</summary>${tags(e.coursework)}</details>` : ""}
+  </article>`).join("")}</div>`);
+}
+
+function skills() {
+  const cats = Object.entries(S.skills || {}).filter(([, v]) => has(v));
+  if (!cats.length) return "";
+  return section("skills", "Skills", `<div class="grid">${cats.map(([k, v]) => `<article class="card"><h3>${esc(k)}</h3>${tags(v)}</article>`).join("")}</div>`);
+}
+
+function projects() {
+  if (!has(S.projects)) return "";
+  return section("projects", "Projects", `<div class="grid">${S.projects.map((p) => `<article class="card project">
+    ${p.image ? `<img class="thumb" src="${safeUrl(p.image)}" alt="Screenshot of ${esc(p.title)}" loading="lazy">` : `<div class="ph" aria-hidden="true">${esc((p.title || "P")[0])}</div>`}
+    <div class="body">
+      <h3>${esc(p.title)}</h3>
+      <p class="meta">${[p.role, p.date].filter(Boolean).map(esc).join(" | ")}</p>
+      <p>${esc(p.description)}</p>
+      ${tags(p.tech)}
+      ${links([a(p.github, "GitHub"), a(p.demo, "Live demo")])}
+    </div></article>`).join("")}</div>`);
+}
+
+function experience() {
+  if (!has(S.experience)) return "";
+  return section("experience", "Experience", `<div class="timeline">${S.experience.map((x) => `<article class="item">
+    <h3>${esc(x.title)}</h3>
+    <p class="meta">${[x.company, x.location, x.dates].filter(Boolean).map(esc).join(" | ")}</p>
+    ${ul(x.responsibilities)}${has(x.achievements) ? `<p><strong>Achievements</strong></p>${ul(x.achievements)}` : ""}${tags(x.tech)}
+  </article>`).join("")}</div>`);
+}
+
+function research() {
+  const R = S.research || {};
+  if (![R.interests, R.projects, R.roles, R.conferences, R.links].some(has)) return "";
+  const block = (t, inner) => (inner ? `<article class="card"><h3>${t}</h3>${inner}</article>` : "");
+  const items = (arr, f) => (has(arr) ? arr.map(f).join("") : "");
+  return section("research", "Research", `<div class="grid">
+    ${block("Research interests", tags(R.interests))}
+    ${block("Research projects", items(R.projects, (p) => `<p><strong>${esc(p.title)}</strong><br>${esc(p.description)} ${a(p.link, "Link")}</p>`))}
+    ${block("Research assistant experience", items(R.roles, (r) => `<p><strong>${esc(r.title)}</strong>, ${esc(r.org)} <span class="muted">(${esc(r.dates)})</span><br>${esc(r.description)}</p>`))}
+    ${block("Conferences", ul(R.conferences))}
+    ${block("Research links", has(R.links) ? links(R.links.map((l) => a(l.url, l.label))) : "")}
+  </div>`);
+}
+
+function publications() {
+  if (!has(S.publications)) return "";
+  return section("publications", "Publications", S.publications.map((p) => `<article class="pub">
+    <p><strong>${esc(p.title)}</strong></p>
+    <p>${esc(p.authors)}. <em>${esc(p.venue)}</em>, ${esc(p.year)}.${p.doi ? ` DOI: ${a("https://doi.org/" + p.doi, p.doi)}` : ""}</p>
+    ${p.abstract ? `<details><summary>Abstract</summary><p>${esc(p.abstract)}</p></details>` : ""}
+    ${links([a(p.pdf, "PDF"), a(p.publisher, "Publisher page")])}
+  </article>`).join(""));
+}
+
+function recognition() {
+  const c = has(S.certifications) ? `<article class="card"><h3>Certifications</h3>${S.certifications.map((x) => `<p><strong>${esc(x.name)}</strong><br><span class="meta">${esc(x.org)} | ${esc(x.date)}</span> ${a(x.url, "Credential")}</p>`).join("")}</article>` : "";
+  const w = has(S.awards) ? `<article class="card"><h3>Awards &amp; Achievements</h3>${S.awards.map((x) => `<p><strong>${esc(x.name)}</strong><br><span class="meta">${esc(x.org)} | ${esc(x.date)}</span><br>${esc(x.description)}</p>`).join("")}</article>` : "";
+  return c || w ? section("recognition", "Certifications & Awards", `<div class="grid">${c}${w}</div>`) : "";
+}
+
+function leadership() {
+  if (!has(S.leadership)) return "";
+  return section("leadership", "Volunteering & Leadership", `<div class="timeline">${S.leadership.map((x) => `<article class="item"><h3>${esc(x.role)}</h3><p class="meta">${esc(x.org)} | ${esc(x.dates)}</p><p>${esc(x.description)}</p></article>`).join("")}</div>`);
+}
+
+function resume() {
+  if (!S.resume) return "";
+  return section("resume", "Resume", `<div class="band"><p style="margin:0">Download my resume as a PDF, or open it in a new tab.</p>
+    <div class="cta" style="margin:0"><a class="btn" href="${safeUrl(S.resume)}" download>Download Resume</a><a class="btn ghost" href="${safeUrl(S.resume)}" target="_blank" rel="noopener">View Resume</a></div></div>`);
+}
+
+function contact() {
+  const social = Object.entries(S.links).filter(([, u]) => u).map(([k, u]) => a(u, k));
+  return section("contact", "Contact", `<div class="band"><div>
+    <h3>Interested in connecting?</h3>
+    <p>Feel free to reach out regarding internships, employment, research, projects, or collaboration.</p>
+    ${S.phone ? `<p class="meta">Phone: ${esc(S.phone)}</p>` : ""}${S.location ? `<p class="meta">${esc(S.location)}</p>` : ""}
+    ${links(social)}</div>
+    <!-- To use another contact method (Calendly, LinkedIn message...), replace the mailto: link below. -->
+    ${S.email ? `<a class="btn" href="mailto:${esc(S.email)}">Email Me</a>` : ""}</div>`);
+}
+
+/* ==================== RENDER + NAVIGATION ==================== */
+const navItems = [["home", "Home", true], ["about", "About", about()], ["education", "Education", education()], ["skills", "Skills", skills()],
+  ["projects", "Projects", projects()], ["experience", "Experience", experience()], ["research", "Research", research()],
+  ["publications", "Publications", publications()], ["contact", "Contact", true]];
+
+document.getElementById("main").innerHTML = hero() + navItems.slice(1, -1).map((n) => n[2]).join("") + recognition() + leadership() + resume() + contact();
+
+document.getElementById("navList").innerHTML = navItems.filter((n) => n[2]).map((n) => `<li><a href="#${n[0]}">${n[1]}</a></li>`).join("");
+document.getElementById("brandName").textContent = S.name;
+document.getElementById("footName").textContent = S.name;
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Photo fallback: show initials if the image is missing */
+(function () {
+  const box = document.getElementById("photoBox"), img = box.querySelector("img");
+  const fallback = () => { box.innerHTML = `<div class="ph" role="img" aria-label="Initials of ${esc(S.name)}">${esc(initials)}</div>`; };
+  img.addEventListener("error", fallback);
+  if (img.complete && img.naturalWidth === 0) fallback();
+})();
+/* Project image fallback */
+document.querySelectorAll(".project .thumb").forEach((im) => im.addEventListener("error", () => {
+  const d = document.createElement("div"); d.className = "ph"; d.setAttribute("aria-hidden", "true"); d.textContent = (im.alt.replace("Screenshot of ", "")[0] || "P"); im.replaceWith(d);
+}));
+
+/* Mobile menu */
+const menuBtn = document.getElementById("menuBtn"), nav = document.getElementById("nav");
+menuBtn.addEventListener("click", () => { const o = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); });
+nav.addEventListener("click", (e) => { if (e.target.tagName === "A") { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+/* Theme toggle (saved in localStorage) */
+document.getElementById("themeBtn").addEventListener("click", () => {
+  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try { localStorage.setItem("theme", next); } catch (e) {}
+});
+
+/* Highlight the current section in the menu */
+if ("IntersectionObserver" in window) {
+  const links = [...document.querySelectorAll("#navList a")];
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) links.forEach((l) => l.setAttribute("aria-current", l.getAttribute("href") === "#" + en.target.id ? "true" : "false"));
+  }), { rootMargin: "-40% 0px -55% 0px" });
+  links.forEach((l) => { const t = document.querySelector(l.getAttribute("href")); if (t) io.observe(t); });
+}
+</script>
+</body>
+</html>
